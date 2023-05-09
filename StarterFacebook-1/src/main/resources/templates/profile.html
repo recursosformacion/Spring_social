@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1"/>
+<title>FaceBook-Connect</title>
+</head>
+<body>
+	<h1>
+		Hola , <span th:text="${profileName}"></span>!
+	</h1>
+	<h2>Quieres decir algo?</h2>
+	<div id="addTweet" class="tab-pane">
+			
+			<form method="post" action="/">
+				Que hay de nuevo viejo?: <input type="text" name="text" />  <input type="submit" value="Enviar" />
+			</form>	
+		</div>
+	<h2>Los amigos</h2>
+	<div th:each="friend:${friends}">
+		<b th:text="${friend.from.name}">from</b> *:
+		
+		<img th:if="${friend.picture}" th:src="${friend.picture}" />
+		<hr />
+	</div>
+	<h4>Aqui tiene la lista solicitada:</h4>
+
+	<div th:each="post:${posts}">
+		<b th:text="${post.from.name}">from</b> escribe:
+		<p th:text="${post.message}">message text</p>
+		<img th:if="${post.picture}" th:src="${post.picture}" />
+		<p th:text="${post.name }">name text</p>
+		<hr />
+	</div>
+</body>
+</html>
